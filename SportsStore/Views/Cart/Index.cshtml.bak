@@ -1,7 +1,7 @@
 ﻿@model CartIndexViewModel
 
 <h2>Your Cart</h2>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped" >
 	<thead>
 		<tr>
 			<th>Quantity</th>
