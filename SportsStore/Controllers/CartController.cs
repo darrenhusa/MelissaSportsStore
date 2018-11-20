@@ -39,7 +39,7 @@ namespace SportsStore.Controllers
                 SaveCart(cart);
             }
 
-            return RedirectToAction("Index", new { returnUrl });
+            return RedirectToAction("Index", new {returnUrl});
         }
 
         public RedirectToActionResult RemoveFromCart(int productId, string returnUrl)
@@ -52,7 +52,8 @@ namespace SportsStore.Controllers
                 cart.RemoveLine(product);
                 SaveCart(cart);
             }
-            return RedirectToAction("Index", new { returnUrl });
+
+            return RedirectToAction("Index", new {returnUrl});
         }
 
         private Cart GetCart()

@@ -73,9 +73,8 @@ namespace SportsStore.Models
                         Description = "Gold-plated, diamon-studded King",
                         Category = "Chess", Price = 1200
                     }
-                    );
+                );
                 context.SaveChanges();
-           
             }
         }
     }

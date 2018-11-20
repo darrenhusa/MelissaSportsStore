@@ -12,9 +12,8 @@ using SportsStore.Models.ViewModels;
 namespace SportsStore.Infrastructure
 {
     [HtmlTargetElement("div", Attributes = "page-model")]
-    public class PageLinkTagHelper: TagHelper
+    public class PageLinkTagHelper : TagHelper
     {
-        
         private IUrlHelperFactory urlHelperFactory;
 
         public PageLinkTagHelper(IUrlHelperFactory helperFactory)
@@ -22,16 +21,13 @@ namespace SportsStore.Infrastructure
             urlHelperFactory = helperFactory;
         }
 
-        [ViewContext]
-        [HtmlAttributeNotBound]
-
-        public ViewContext ViewContext { get; set; }
+        [ViewContext] [HtmlAttributeNotBound] public ViewContext ViewContext { get; set; }
         public PagingInfo PageModel { get; set; }
         public string PageAction { get; set; }
 
         [HtmlAttributeName(DictionaryAttributePrefix = "page-url-")]
         public Dictionary<string, object> PageUrlValues { get; set; }
-        = new Dictionary<string, object>();
+            = new Dictionary<string, object>();
 
         public bool PageClassesEnabled { get; set; } = false;
         public string PageClass { get; set; }
@@ -50,12 +46,15 @@ namespace SportsStore.Infrastructure
                 if (PageClassesEnabled)
                 {
                     tag.AddCssClass(PageClass);
-                    tag.AddCssClass(i == PageModel.CurrentPage 
-                        ? PageClassSelected : PageClassNormal);
+                    tag.AddCssClass(i == PageModel.CurrentPage
+                        ? PageClassSelected
+                        : PageClassNormal);
                 }
+
                 tag.InnerHtml.Append(i.ToString());
                 result.InnerHtml.AppendHtml(tag);
             }
+
             output.Content.AppendHtml(result.InnerHtml);
         }
     }

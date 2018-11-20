@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SportsStore.Models
 {
-    public class EFProductRepository :IProductRepository
+    public class EFProductRepository : IProductRepository
     {
         private ApplicationDbContext context;
 
@@ -13,6 +13,7 @@ namespace SportsStore.Models
         {
             context = ctx;
         }
+
         public IQueryable<Product> Products => context.Products;
     }
 }
