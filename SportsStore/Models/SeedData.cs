@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 
 namespace SportsStore.Models
 {
@@ -13,7 +9,7 @@ namespace SportsStore.Models
     {
         public static void EnsurePopulated(IApplicationBuilder app)
         {
-            ApplicationDbContext context = app.ApplicationServices.GetRequiredService<ApplicationDbContext>();
+            var context = app.ApplicationServices.GetRequiredService<ApplicationDbContext>();
             context.Database.Migrate();
             if (!context.Products.Any())
             {
@@ -34,19 +30,19 @@ namespace SportsStore.Models
                     {
                         Name = "Soccer Ball",
                         Description = "FIFA-Approved size and weight",
-                        Category = "Soccer", Price = 19.50m,
+                        Category = "Soccer", Price = 19.50m
                     },
                     new Product
                     {
                         Name = "Corner Flags",
                         Description = "Give your playing feild a professional touch",
-                        Category = "Soccer", Price = 34.95m,
+                        Category = "Soccer", Price = 34.95m
                     },
                     new Product
                     {
                         Name = "Stadium",
                         Description = "Flat-packed 35,000-seat stadium",
-                        Category = "Soccer", Price = 79500,
+                        Category = "Soccer", Price = 79500
                     },
                     new Product
                     {

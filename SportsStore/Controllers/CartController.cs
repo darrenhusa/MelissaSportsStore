@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SportsStore.Infrastructure;
 using SportsStore.Models;
@@ -12,7 +8,7 @@ namespace SportsStore.Controllers
 {
     public class CartController : Controller
     {
-        private IProductRepository repository;
+        private readonly IProductRepository repository;
 
         public CartController(IProductRepository repo)
         {
@@ -30,11 +26,11 @@ namespace SportsStore.Controllers
 
         public RedirectToActionResult AddToCart(int productId, string returnUrl)
         {
-            Product product = repository.Products.FirstOrDefault(p => p.ProductID == productId);
+            var product = repository.Products.FirstOrDefault(p => p.ProductID == productId);
 
             if (product != null)
             {
-                Cart cart = GetCart();
+                var cart = GetCart();
                 cart.AddItem(product, 1);
                 SaveCart(cart);
             }
@@ -44,11 +40,11 @@ namespace SportsStore.Controllers
 
         public RedirectToActionResult RemoveFromCart(int productId, string returnUrl)
         {
-            Product product = repository.Products.FirstOrDefault(p => p.ProductID == productId);
+            var product = repository.Products.FirstOrDefault(p => p.ProductID == productId);
 
             if (product != null)
             {
-                Cart cart = GetCart();
+                var cart = GetCart();
                 cart.RemoveLine(product);
                 SaveCart(cart);
             }
@@ -58,7 +54,7 @@ namespace SportsStore.Controllers
 
         private Cart GetCart()
         {
-            Cart cart = HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
+            var cart = HttpContext.Session.GetJson<Cart>("Cart") ?? new Cart();
             return cart;
         }
 

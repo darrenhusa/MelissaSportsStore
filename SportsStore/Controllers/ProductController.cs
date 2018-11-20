@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using SportsStore.Models;
 using SportsStore.Models.ViewModels;
@@ -10,8 +7,8 @@ namespace SportsStore.Controllers
 {
     public class ProductController : Controller
     {
-        private IProductRepository repository;
         public int PageSize = 4;
+        private readonly IProductRepository repository;
 
         public ProductController(IProductRepository repo)
         {
@@ -19,7 +16,8 @@ namespace SportsStore.Controllers
         }
 
         public ViewResult List(string category, int productPage = 1)
-            => View(new ProductsListViewModel
+        {
+            return View(new ProductsListViewModel
             {
                 Products = repository.Products
                     .Where(p => category == null || p.Category == category)
@@ -37,5 +35,6 @@ namespace SportsStore.Controllers
                 },
                 CurrentCategory = category
             });
+        }
     }
 }

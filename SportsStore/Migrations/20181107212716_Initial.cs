@@ -8,8 +8,8 @@ namespace SportsStore.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
+                "Products",
+                table => new
                 {
                     ProductID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy",
@@ -25,7 +25,7 @@ namespace SportsStore.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Products");
+                "Products");
         }
     }
 }
